@@ -2,5 +2,12 @@ package tech.octopusdragon.creaturecreator.enums;
 
 public enum Shape {
     SQUARE,
-    CIRCLE
+    CIRCLE,
+    BUMPY,
+    SPIKY,
+    STAR,
+    HEART,
+    PENTAGON,
+    HEXAGON,
+    OCTAGON
 }

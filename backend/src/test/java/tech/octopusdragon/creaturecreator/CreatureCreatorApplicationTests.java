@@ -41,6 +41,20 @@ class CreatureCreatorApplicationTests {
 		assertThat(bodyShape).isEqualTo(Shape.SQUARE);
 		Color bodyColor = Color.valueOf(documentContext.read("$.bodyColor"));
 		assertThat(bodyColor).isEqualTo(Color.BLUE);
+		Shape eyeShape = Shape.valueOf(documentContext.read("$.eyeShape"));
+		assertThat(eyeShape).isEqualTo(Shape.CIRCLE);
+		Color eyeColor = Color.valueOf(documentContext.read("$.eyeColor"));
+		assertThat(eyeColor).isEqualTo(Color.RED);
+		Boolean antenna = documentContext.read("$.antenna");
+		assertThat(antenna).isEqualTo(false);
+		Boolean horns = documentContext.read("$.horns");
+		assertThat(horns).isEqualTo(true);
+		Boolean tail = documentContext.read("$.tail");
+		assertThat(tail).isEqualTo(false);
+		Boolean ears = documentContext.read("$.ears");
+		assertThat(ears).isEqualTo(false);
+		Boolean proboscis = documentContext.read("$.proboscis");
+		assertThat(proboscis).isEqualTo(false);
 	}
 
 	@Test
@@ -58,15 +72,40 @@ class CreatureCreatorApplicationTests {
 		JSONArray names = documentContext.read("$..name");
 		assertThat(names).containsExactlyInAnyOrder("John", "Mary", "Tom");
 		JSONArray bodyShapes = documentContext.read("$..bodyShape");
-		assertThat(bodyShapes).containsExactlyInAnyOrder("SQUARE", "CIRCLE", "CIRCLE");
+		assertThat(bodyShapes).containsExactlyInAnyOrder("SQUARE", "CIRCLE", "PENTAGON");
 		JSONArray bodyColors = documentContext.read("$..bodyColor");
-		assertThat(bodyColors).containsExactlyInAnyOrder("BLUE", "RED", "GREEN");
+		assertThat(bodyColors).containsExactlyInAnyOrder("BLUE", "RED", "YELLOW");
+		JSONArray eyeShapes = documentContext.read("$..eyeShape");
+		assertThat(eyeShapes).containsExactlyInAnyOrder("CIRCLE", "CIRCLE", "HEART");
+		JSONArray eyeColors = documentContext.read("$..eyeColor");
+		assertThat(eyeColors).containsExactlyInAnyOrder("RED", "YELLOW", "RED");
+		JSONArray antennas = documentContext.read("$..antenna");
+		assertThat(antennas).containsExactlyInAnyOrder(false, true, false);
+		JSONArray horns = documentContext.read("$..horns");
+		assertThat(horns).containsExactlyInAnyOrder(true, false, false);
+		JSONArray tails = documentContext.read("$..tail");
+		assertThat(tails).containsExactlyInAnyOrder(false, true, false);
+		JSONArray ears = documentContext.read("$..ears");
+		assertThat(ears).containsExactlyInAnyOrder(false, true, true);
+		JSONArray proboscis = documentContext.read("$..proboscis");
+		assertThat(proboscis).containsExactlyInAnyOrder(false, false, true);
 	}
 
 	@Test
 	@DirtiesContext
 	void createTest() {
-		Creature newCreature = new Creature(null, "Sarah", Shape.SQUARE, Color.GREEN);
+		Creature newCreature = new Creature(
+				null,
+				"Sarah",
+				Shape.SQUARE,
+				Color.GREEN,
+				Shape.STAR,
+				Color.PURPLE,
+				true,
+				false,
+				false,
+				false,
+				true);
 		ResponseEntity<Void> createResponse = restTemplate.postForEntity("/creature-creator/creature", newCreature, Void.class);
 		assertThat(createResponse.getStatusCode()).isEqualTo(HttpStatus.CREATED);
 
@@ -83,12 +122,37 @@ class CreatureCreatorApplicationTests {
 		assertThat(bodyShape).isEqualTo(Shape.SQUARE);
 		Color bodyColor = Color.valueOf(documentContext.read("$.bodyColor"));
 		assertThat(bodyColor).isEqualTo(Color.GREEN);
+		Shape eyeShape = Shape.valueOf(documentContext.read("$.eyeShape"));
+		assertThat(eyeShape).isEqualTo(Shape.STAR);
+		Color eyeColor = Color.valueOf(documentContext.read("$.eyeColor"));
+		assertThat(eyeColor).isEqualTo(Color.PURPLE);
+		Boolean antenna = documentContext.read("$.antenna");
+		assertThat(antenna).isEqualTo(true);
+		Boolean horns = documentContext.read("$.horns");
+		assertThat(horns).isEqualTo(false);
+		Boolean tail = documentContext.read("$.tail");
+		assertThat(tail).isEqualTo(false);
+		Boolean ears = documentContext.read("$.ears");
+		assertThat(ears).isEqualTo(false);
+		Boolean proboscis = documentContext.read("$.proboscis");
+		assertThat(proboscis).isEqualTo(true);
 	}
 
 	@Test
 	@DirtiesContext
 	void updateTest() {
-		Creature creatureUpdate = new Creature(null, "Bobby", Shape.CIRCLE, Color.BLUE);
+		Creature creatureUpdate = new Creature(
+				null,
+				"John",
+				Shape.CIRCLE,
+				Color.BLUE,
+				Shape.SQUARE,
+				Color.RED,
+				false,
+				true,
+				false,
+				false,
+				false);
 		HttpEntity<Creature> request = new HttpEntity<>(creatureUpdate);
 		ResponseEntity<Void> UpdateResponse = restTemplate.exchange("/creature-creator/creature/101", HttpMethod.PUT, request, Void.class);
 		assertThat(UpdateResponse.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
@@ -99,11 +163,25 @@ class CreatureCreatorApplicationTests {
 		Number id = documentContext.read("$.id");
 		assertThat(id).isEqualTo(101);
 		String name = documentContext.read("$.name");
-		assertThat(name).isEqualTo("Bobby");
+		assertThat(name).isEqualTo("John");
 		Shape bodyShape = Shape.valueOf(documentContext.read("$.bodyShape"));
 		assertThat(bodyShape).isEqualTo(Shape.CIRCLE);
 		Color bodyColor = Color.valueOf(documentContext.read("$.bodyColor"));
 		assertThat(bodyColor).isEqualTo(Color.BLUE);
+		Shape eyeShape = Shape.valueOf(documentContext.read("$.eyeShape"));
+		assertThat(eyeShape).isEqualTo(Shape.SQUARE);
+		Color eyeColor = Color.valueOf(documentContext.read("$.eyeColor"));
+		assertThat(eyeColor).isEqualTo(Color.RED);
+		Boolean antenna = documentContext.read("$.antenna");
+		assertThat(antenna).isEqualTo(false);
+		Boolean horns = documentContext.read("$.horns");
+		assertThat(horns).isEqualTo(true);
+		Boolean tail = documentContext.read("$.tail");
+		assertThat(tail).isEqualTo(false);
+		Boolean ears = documentContext.read("$.ears");
+		assertThat(ears).isEqualTo(false);
+		Boolean proboscis = documentContext.read("$.proboscis");
+		assertThat(proboscis).isEqualTo(false);
 	}
 
 	@Test

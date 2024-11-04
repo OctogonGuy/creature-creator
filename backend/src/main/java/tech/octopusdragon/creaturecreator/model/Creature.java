@@ -8,5 +8,12 @@ public record Creature(
         @Id Long id,
         String name,
         Shape bodyShape,
-        Color bodyColor
+        Color bodyColor,
+        Shape eyeShape,
+        Color eyeColor,
+        Boolean antenna,
+        Boolean horns,
+        Boolean tail,
+        Boolean ears,
+        Boolean proboscis
 ) {}

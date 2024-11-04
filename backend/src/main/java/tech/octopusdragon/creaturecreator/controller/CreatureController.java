@@ -26,7 +26,18 @@ public class CreatureController {
 
     @PostMapping("/creature")
     public ResponseEntity<Void> create(@RequestBody Creature creature, UriComponentsBuilder ucb) {
-        Creature creatureWithoutId = new Creature(null, creature.name(), creature.bodyShape(), creature.bodyColor());
+        Creature creatureWithoutId = new Creature(
+                null,
+                creature.name(),
+                creature.bodyShape(),
+                creature.bodyColor(),
+                creature.eyeShape(),
+                creature.eyeColor(),
+                creature.antenna(),
+                creature.horns(),
+                creature.tail(),
+                creature.ears(),
+                creature.proboscis());
         Creature savedCreature = creatureRepository.save(creatureWithoutId);
         URI creatureLocation = ucb
                 .path("creature-creator/creature/{id}")
@@ -57,7 +68,18 @@ public class CreatureController {
     public ResponseEntity<Creature> update(@PathVariable Long id, @RequestBody Creature creatureUpdate) {
         Optional<Creature> creature = creatureRepository.findById(id);
         if (creature.isPresent()) {
-            Creature updatedCreature = new Creature(creature.get().id(), creatureUpdate.name(), creatureUpdate.bodyShape(), creatureUpdate.bodyColor());
+            Creature updatedCreature = new Creature(
+                    creature.get().id(),
+                    creatureUpdate.name(),
+                    creatureUpdate.bodyShape(),
+                    creatureUpdate.bodyColor(),
+                    creatureUpdate.eyeShape(),
+                    creatureUpdate.eyeColor(),
+                    creatureUpdate.antenna(),
+                    creatureUpdate.horns(),
+                    creatureUpdate.tail(),
+                    creatureUpdate.ears(),
+                    creatureUpdate.proboscis());
             creatureRepository.save(updatedCreature);
             return ResponseEntity.noContent().build();
         }
