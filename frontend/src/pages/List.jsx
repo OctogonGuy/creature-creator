@@ -24,25 +24,25 @@ function List() {
 
   return (
     <>
-      <header>
+      <nav>
         <ul className="links">
           <li>
             <Link to={"/create"}>Create</Link>
           </li>
         </ul>
-      </header>
+      </nav>
       <div className="creature-grid">
         {data.map((creature) => {
           return <Creature key={creature.id} creature={creature}/>
         })}
       </div>
-      <footer>
-        <ul className="navigation">
+      <nav>
+        <ul className="pages">
           { page > 0 && <li><Link to={`/${page - 1}`}>Previous</Link></li> }
           <li>{page}</li>
           <li><Link to={`/${page + 1}`}>Next</Link></li>
         </ul>
-      </footer>
+      </nav>
     </>
   )
 }

@@ -34,16 +34,16 @@
   }
 }
 
-.links, .navigation {
+.links, .pages {
   display: flex;
   flex-direction: row;
   gap: 10px;
 }
 
-.navigation {
+.pages {
   justify-content: center;
 }
 
-.links > li, .navigation > li {
+.links > li, .pages > li {
   display: inline-block;
 }

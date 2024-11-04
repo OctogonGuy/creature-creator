@@ -3,3 +3,27 @@
   margin: 0 auto;
   padding: 2rem;
 }
+
+.banner {
+  display: block;
+  width: clamp(50%, 800px, 100%);
+  margin: 0 auto;
+}
+
+.banner > .logo {
+  display: block;
+  width: 100%;
+}
+
+footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.website > .icon {
+  display: block;
+  height: 2em;
+}
