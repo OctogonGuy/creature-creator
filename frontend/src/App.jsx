@@ -2,6 +2,7 @@ import './App.css'
 import List from "./pages/List.jsx";
 import {BrowserRouter, Link, Navigate, Route, Routes} from "react-router-dom";
 import Create from "./pages/Create.jsx";
+import Single from "./pages/Single.jsx";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/0" replace/>}/>
         <Route path="/:page" element={<List/>}/>
+        <Route path="/creature/:id" element={<Single/>}/>
         <Route path="/create" element={<Create/>}/>
       </Routes>
       <footer>

@@ -33,7 +33,7 @@ function List() {
       </nav>
       <div className="creature-grid">
         {data.map((creature) => {
-          return <Creature key={creature.id} creature={creature}/>
+          return <Link key={creature.id} to={`/creature/${creature.id}`}><Creature creature={creature}/></Link>
         })}
       </div>
       <nav>
