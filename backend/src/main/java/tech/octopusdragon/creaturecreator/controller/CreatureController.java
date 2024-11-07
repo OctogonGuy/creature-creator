@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/creature-creator")
+@RequestMapping("/creature-creator/api")
 public class CreatureController {
 
     private final CreatureRepository creatureRepository;
@@ -24,7 +24,7 @@ public class CreatureController {
         this.creatureRepository = creatureRepository;
     }
 
-    @PostMapping("/creature")
+    @PostMapping
     public ResponseEntity<Void> create(@RequestBody Creature creature, UriComponentsBuilder ucb) {
         Creature creatureWithoutId = new Creature(
                 null,
@@ -40,13 +40,13 @@ public class CreatureController {
                 creature.proboscis());
         Creature savedCreature = creatureRepository.save(creatureWithoutId);
         URI creatureLocation = ucb
-                .path("creature-creator/creature/{id}")
+                .path("creature-creator/api/{id}")
                 .buildAndExpand(savedCreature.id())
                 .toUri();
         return ResponseEntity.created(creatureLocation).build();
     }
 
-    @GetMapping("/creature")
+    @GetMapping
     public ResponseEntity<List<Creature>> retrieve(Pageable pageable) {
         Page<Creature> page = creatureRepository.findAll(
                 PageRequest.of(
@@ -58,13 +58,13 @@ public class CreatureController {
         return ResponseEntity.ok(page.getContent());
     }
 
-    @GetMapping("/creature/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Creature> retrieve(@PathVariable Long id) {
         Optional<Creature> creature = creatureRepository.findById(id);
         return creature.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PutMapping("/creature/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Creature> update(@PathVariable Long id, @RequestBody Creature creatureUpdate) {
         Optional<Creature> creature = creatureRepository.findById(id);
         if (creature.isPresent()) {
@@ -86,7 +86,7 @@ public class CreatureController {
         return ResponseEntity.notFound().build();
     }
 
-    @DeleteMapping("/creature/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Creature> delete(@PathVariable Long id) {
         if (creatureRepository.existsById(id)) {
             creatureRepository.deleteById(id);

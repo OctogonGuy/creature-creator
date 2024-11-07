@@ -28,7 +28,7 @@ class CreatureCreatorApplicationTests {
 
 	@Test
 	void retrieveSingleTest() {
-		ResponseEntity<String> response = restTemplate.getForEntity("/creature-creator/creature/101", String.class);
+		ResponseEntity<String> response = restTemplate.getForEntity("/creature-creator/api/101", String.class);
 
 		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
 
@@ -59,7 +59,7 @@ class CreatureCreatorApplicationTests {
 
 	@Test
 	void retrieveMultipleTest() {
-		ResponseEntity<String> response = restTemplate.getForEntity("/creature-creator/creature", String.class);
+		ResponseEntity<String> response = restTemplate.getForEntity("/creature-creator/api", String.class);
 
 		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
 
@@ -106,7 +106,7 @@ class CreatureCreatorApplicationTests {
 				false,
 				false,
 				true);
-		ResponseEntity<Void> createResponse = restTemplate.postForEntity("/creature-creator/creature", newCreature, Void.class);
+		ResponseEntity<Void> createResponse = restTemplate.postForEntity("/creature-creator/api", newCreature, Void.class);
 		assertThat(createResponse.getStatusCode()).isEqualTo(HttpStatus.CREATED);
 
 		URI locationOfNewCreature = createResponse.getHeaders().getLocation();
@@ -154,10 +154,10 @@ class CreatureCreatorApplicationTests {
 				false,
 				false);
 		HttpEntity<Creature> request = new HttpEntity<>(creatureUpdate);
-		ResponseEntity<Void> UpdateResponse = restTemplate.exchange("/creature-creator/creature/101", HttpMethod.PUT, request, Void.class);
+		ResponseEntity<Void> UpdateResponse = restTemplate.exchange("/creature-creator/api/101", HttpMethod.PUT, request, Void.class);
 		assertThat(UpdateResponse.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
 
-		ResponseEntity<String> getResponse = restTemplate.getForEntity("/creature-creator/creature/101", String.class);
+		ResponseEntity<String> getResponse = restTemplate.getForEntity("/creature-creator/api/101", String.class);
 		assertThat(getResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
 		DocumentContext documentContext = JsonPath.parse(getResponse.getBody());
 		Number id = documentContext.read("$.id");
@@ -187,10 +187,10 @@ class CreatureCreatorApplicationTests {
 	@Test
 	@DirtiesContext
 	void deleteTest() {
-		ResponseEntity<Void> deleteResponse = restTemplate.exchange("/creature-creator/creature/101", HttpMethod.DELETE, null, Void.class);
+		ResponseEntity<Void> deleteResponse = restTemplate.exchange("/creature-creator/api/101", HttpMethod.DELETE, null, Void.class);
 		assertThat(deleteResponse.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
 
-		ResponseEntity<String> getResponse = restTemplate.getForEntity("/creature-creator/creature/101", String.class);
+		ResponseEntity<String> getResponse = restTemplate.getForEntity("/creature-creator/api/101", String.class);
 		assertThat(getResponse.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
 	}
 
