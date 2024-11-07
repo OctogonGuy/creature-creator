@@ -24,13 +24,6 @@ function List() {
 
   return (
     <>
-      <nav>
-        <ul className="links">
-          <li>
-            <Link to={"/create"}>Create</Link>
-          </li>
-        </ul>
-      </nav>
       <div className="creature-grid">
         {data.map((creature) => {
           return <Link key={creature.id} to={`/creature/${creature.id}`}><Creature creature={creature}/></Link>

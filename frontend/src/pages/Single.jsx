@@ -24,13 +24,6 @@ function Single() {
 
   return (
     <div className="single">
-      <nav>
-        <ul className="links">
-          <li>
-            <Link to={"/create"}>Create</Link>
-          </li>
-        </ul>
-      </nav>
       {creature && <Creature key={creature.id} creature={creature}/>}
     </div>
   )
