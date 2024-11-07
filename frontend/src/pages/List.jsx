@@ -26,7 +26,10 @@ function List() {
     <>
       <div className="creature-grid">
         {data.map((creature) => {
-          return <Link key={creature.id} to={`/creature/${creature.id}`}><Creature creature={creature}/></Link>
+          return <Link className="item" key={creature.id} to={`/creature/${creature.id}`}>
+            <Creature creature={creature}/>
+            <p className="name">{creature.name}</p>
+          </Link>
         })}
       </div>
       <nav>

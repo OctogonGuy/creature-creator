@@ -10,6 +10,19 @@
   column-gap: 24px;
 }
 
+.creature-grid > .item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.creature-grid > .item > .name {
+  margin: 0;
+  padding: 0;
+}
+
 @media screen and (min-width: 901px) {
   .creature-grid {
     grid-template-columns: repeat(4, 1fr);

@@ -23,9 +23,12 @@ function Single() {
   }, [id]);
 
   return (
-    <div className="single">
-      {creature && <Creature key={creature.id} creature={creature}/>}
-    </div>
+    <>
+      {creature && <div className="single">
+        <h1 className="name">{creature.name}</h1>
+        <Creature key={creature.id} creature={creature}/>
+      </div>}
+    </>
   )
 }
 

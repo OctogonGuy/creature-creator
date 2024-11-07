@@ -1,3 +1,5 @@
-.single .creature > .graphic {
+.single .creature-graphic {
+  display: block;
   width: clamp(50%, 500px, 100%);
+  margin: 0 auto;
 }
