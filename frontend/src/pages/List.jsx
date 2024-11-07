@@ -2,14 +2,14 @@ import './List.css'
 import {useEffect, useState} from "react";
 import {getCreatures} from "../api/CreatureService.js";
 import Creature from "../components/Creature.jsx";
-import {Link, useParams} from "react-router-dom";
+import {Link, useSearchParams} from "react-router-dom";
 
 function List() {
   const [data, setData] = useState([]);
-  let { page } = useParams();
-  page = Number(page);
+  const [searchParams] = useSearchParams();
+  let page = Number(searchParams.get("page"));
 
-  const getAllCreatures = async (page=0, size=60) => {
+  const getAllCreatures = async (page=1, size=60) => {
     try {
       const {data} = await getCreatures(page, size);
       setData(data);
@@ -34,9 +34,9 @@ function List() {
       </div>
       <nav>
         <ul className="pages">
-          { page > 0 && <li><Link to={`/${page - 1}`}>Previous</Link></li> }
+          { page > 1 && <li><Link to={`/creatures?page=${page - 1}`}>Previous</Link></li> }
           <li>{page}</li>
-          <li><Link to={`/${page + 1}`}>Next</Link></li>
+          <li><Link to={`/creatures?page=${page + 1}`}>Next</Link></li>
         </ul>
       </nav>
     </>

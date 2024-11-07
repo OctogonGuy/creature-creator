@@ -6,7 +6,8 @@ export async function getCreature(id) {
   return await axios.get(`${API_URL}?id=${id}`);
 }
 
-export async function getCreatures(page=0, size=10) {
+export async function getCreatures(page=1, size=10) {
+  page -= 1;
   return await axios.get(`${API_URL}?page=${page}&size=${size}`);
 }
 

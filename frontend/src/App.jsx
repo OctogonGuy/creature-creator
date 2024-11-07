@@ -18,8 +18,8 @@ function App() {
         </ul>
       </nav>
       <Routes>
-        <Route path="/" element={<Navigate to="/0" replace/>}/>
-        <Route path="/:page" element={<List/>}/>
+        <Route path="/" element={<Navigate to="/creatures?page=1" replace/>}/>
+        <Route path="/creatures" element={<List/>}/>
         <Route path="/creature/:id" element={<Single/>}/>
         <Route path="/create" element={<Create/>}/>
       </Routes>

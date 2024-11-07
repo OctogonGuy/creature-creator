@@ -1,5 +1,5 @@
 import './Single.css'
-import {Link, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import Creature from "../components/Creature.jsx";
 import {useEffect, useState} from "react";
 import {getCreature} from "../api/CreatureService.js";
@@ -11,7 +11,6 @@ function Single() {
   const fetchCreature = async (id) => {
     try {
       const {data} = await getCreature(id);
-      console.log(data);
       setCreature(data[0]);
     } catch(error) {
       console.log(error);
