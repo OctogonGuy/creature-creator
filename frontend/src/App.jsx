@@ -10,7 +10,7 @@ function App() {
       <header>
         <Link className="banner" to="/"><img className="logo" src="/logo.svg" alt="Creature Creator"/></Link>
       </header>
-      <nav>
+      <nav className="navbar">
         <ul className="links">
           <li>
             <Link to={"/create"}>Create</Link>

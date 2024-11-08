@@ -1,3 +1,7 @@
+.single {
+  margin-bottom: 2em;
+}
+
 .single .creature-graphic {
   display: block;
   width: clamp(50%, 500px, 100%);

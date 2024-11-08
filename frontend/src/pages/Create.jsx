@@ -51,10 +51,13 @@ function Create() {
 
   return (
     <>
+      <h1>Create</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name: {errors.name && <span className="error">*</span>}</label>
-        <br/>
-        <input type="text" id="name" name="name" onChange={handleChange}/>
+        <div>
+          <label htmlFor="name">Name: {errors.name && <span className="error">*</span>}</label>
+          <br/>
+          <input type="text" id="name" name="name" onChange={handleChange}/>
+        </div>
 
         <fieldset id="body-shape">
           <legend>Body Shape {errors.bodyShape && <span className="error">*</span>}</legend>

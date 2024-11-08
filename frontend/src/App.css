@@ -1,12 +1,30 @@
+@font-face {
+  font-family: Schoolbell;
+  src: local('Schoolbell-Regular'), url('fonts/Schoolbell-Regular.ttf') format('truetype');
+}
+
+body {
+  background-color: #baeada;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
+  background-color: #ebf8f1;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.15);
+  font-family: Schoolbell, sans-serif;
+  color: #0d250d;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: green;
 }
 
 .banner {
   display: block;
-  width: clamp(50%, 800px, 100%);
+  width: clamp(33.33%, 500px, 100%);
   margin: 0 auto;
 }
 
@@ -21,9 +39,67 @@ footer {
   align-items: center;
   justify-content: center;
   gap: 10px;
+  background-color: #e6f4ed;
+  border-radius: 5px;
 }
 
 .website > .icon {
   display: block;
   height: 2em;
+}
+
+a, a:visited, a:hover, a:active {
+  color: #3664ff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.links {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.links > li, .pages > li {
+  display: inline-block;
+}
+
+.navbar {
+  border-bottom: #7aa193 dashed 2px;
+}
+
+form {
+  margin-top: 1.33em;
+  margin-bottom: 2em;
+}
+
+form > * {
+  margin-top: 0.33em;
+  margin-bottom: 0.5em;
+}
+
+fieldset, input {
+  border: #7aa193 outset 2px;
+}
+
+input[type="text"], input[type="password"] {
+  padding: 0.25em 0.5em;
+}
+
+button, input[type="submit"] {
+  border-radius: 0.5em;
+  background-color: #dff3ee;
+  padding: 0.2em 0.5em;
+  font-family: inherit;
+}
+
+button:hover, input[type="submit"]:hover {
+  background-color: #cde8e0;
+}
+
+button:active, input[type="submit"]:active {
+  background-color: #b2d1c9;
 }

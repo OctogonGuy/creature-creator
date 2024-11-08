@@ -1,13 +1,9 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-}
-
 .creature-grid {
   display: grid;
   row-gap: 16px;
   column-gap: 24px;
+  padding-top: 1.33em;
+  padding-bottom: 2em;
 }
 
 .creature-grid > .item {
@@ -21,6 +17,10 @@
 .creature-grid > .item > .name {
   margin: 0;
   padding: 0;
+}
+
+.creature-grid > .item, .creature-grid > .item:hover {
+  color: initial;
 }
 
 @media screen and (min-width: 901px) {
@@ -47,16 +47,9 @@
   }
 }
 
-.links, .pages {
+.pages {
   display: flex;
   flex-direction: row;
   gap: 10px;
-}
-
-.pages {
   justify-content: center;
-}
-
-.links > li, .pages > li {
-  display: inline-block;
 }
