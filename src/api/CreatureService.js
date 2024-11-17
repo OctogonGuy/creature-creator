@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/creature-creator/api";
+const API_URL = "https://octogonbackend.xyz/creature-creator/api";
 
 export async function getCreature(id) {
   return await axios.get(`${API_URL}?id=${id}`);
