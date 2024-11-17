@@ -33,7 +33,7 @@ function Create() {
 
     if (Object.keys(newErrors).length === 0) {
       postCreature(form);
-      navigate("/");
+      navigate("/creature-creator");
     }
   }
 
