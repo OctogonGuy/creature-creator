@@ -1,11 +1,14 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {postCreature} from "../api/CreatureService.js";
 import './Create.css'
 import {useNavigate} from "react-router-dom";
+import {HexColorPicker} from "react-colorful";
 
 function Create() {
   const [inputs, setInputs] = useState({});
   const [errors, setErrors] = useState({});
+  const [bodyColor, setBodyColor] = useState("#FF0000");
+  const [eyeColor, setEyeColor] = useState("#FF0000");
 
   const navigate = useNavigate();
 
@@ -14,6 +17,12 @@ function Create() {
     const value = event.target.value;
     setInputs(values => ({...values, [name]: value}));
   }
+
+  // Handle color change
+  useEffect(() => {
+    setInputs(values => ({...values, ["bodyColor"]: bodyColor}));
+    setInputs(values => ({...values, ["eyeColor"]: eyeColor}));
+  }, [bodyColor, eyeColor]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -41,9 +50,7 @@ function Create() {
     const errors = {};
 
     if (!inputs.name) errors.name = true;
-    if (!inputs.bodyColor) errors.bodyColor = true;
     if (!inputs.bodyShape) errors.bodyShape = true;
-    if (!inputs.eyeColor) errors.eyeColor = true;
     if (!inputs.eyeShape) errors.eyeShape = true;
 
     return errors;
@@ -81,15 +88,10 @@ function Create() {
           <label htmlFor="octagon-body">Octagon</label>
         </fieldset>
 
-        <fieldset id="body-color">
-          <legend>Body Color {errors.bodyColor && <span className="error">*</span>}</legend>
-          <input type="radio" id="red-body" name="bodyColor" value="RED" onChange={handleChange}/>
-          <label htmlFor="red-body">Red</label>
-          <input type="radio" id="green-body" name="bodyColor" value="GREEN" onChange={handleChange}/>
-          <label htmlFor="green-body">Green</label>
-          <input type="radio" id="blue-body" name="bodyColor" value="BLUE" onChange={handleChange}/>
-          <label htmlFor="blue-body">Blue</label>
-        </fieldset>
+        <div>
+          <label htmlFor="body-color">Body Color:</label>
+          <HexColorPicker id="body-color" color={bodyColor} onChange={setBodyColor}/>
+        </div>
 
         <fieldset id="eye-shape">
           <legend>Eye Shape {errors.eyeShape && <span className="error">*</span>}</legend>
@@ -113,15 +115,10 @@ function Create() {
           <label htmlFor="octagon-eyes">Octagon</label>
         </fieldset>
 
-        <fieldset id="eye-color">
-          <legend>Eye Color {errors.eyeColor && <span className="error">*</span>}</legend>
-          <input type="radio" id="red-eyes" name="eyeColor" value="RED" onChange={handleChange}/>
-          <label htmlFor="red-eyes">Red</label>
-          <input type="radio" id="green-eyes" name="eyeColor" value="GREEN" onChange={handleChange}/>
-          <label htmlFor="green-eyes">Green</label>
-          <input type="radio" id="blue-eyes" name="eyeColor" value="BLUE" onChange={handleChange}/>
-          <label htmlFor="blue-eyes">Blue</label>
-        </fieldset>
+        <div>
+          <label htmlFor="eye-color">Eye Color:</label>
+          <HexColorPicker id="eye-color" color={eyeColor} onChange={setEyeColor}/>
+        </div>
 
         <fieldset id="parts">
           <legend>Parts</legend>
