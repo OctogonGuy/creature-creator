@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const API_URL = "https://octogonbackend.xyz/creature-creator/api";
+// eslint-disable-next-line no-undef
+const API_URL = (process.env.NODE_ENV === "development" ? "http://localhost:8080" : "https://www.octogonbackend.xyz") + "/creature-creator/api";
 
 export async function getCreature(id) {
   return await axios.get(`${API_URL}?id=${id}`);
